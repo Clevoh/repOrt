@@ -1,0 +1,54 @@
+.menu-container {
+   display: flex;
+   position: relative;
+   margin: 1rem;
+}
+.logo {
+   font-size: 2rem;
+   text-decoration: none;
+   color:  hsl(169, 100%, 8%);;
+}
+.nav-item{
+   list-style-type: none;
+   /* position: absolute; */
+
+}
+.nav-item a {
+   text-decoration: none;
+   color: #ffffff;
+
+}
+
+.menu-section {
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+   padding: 2rem;
+ 
+   
+}
+.navlist {
+   display: flex;
+   flex-direction: column;
+   background-color: hsl(169, 100%, 8%);
+   position: absolute;
+   left: 5px;
+   gap: 2rem;
+   padding: 2rem;
+   height: 90vh;
+}
+.menu-btn {
+   color:  #ffffff;
+   font-size: 1.5rem;
+   padding: .5rem;
+}
+.btn-menu {
+   position: absolute;
+   right: 50px;
+   border-style: none;
+   background-color: hsl(169, 100%, 8%);
+}
+.log-link {
+   text-decoration: none;
+   color: #ffffff;
+}
