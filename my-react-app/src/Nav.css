@@ -35,7 +35,9 @@
    left: 5px;
    gap: 2rem;
    padding: 2rem;
-   height: 90vh;
+   height: 100vh;
+   z-index: 1;
+
 }
 .menu-btn {
    color:  #ffffff;
