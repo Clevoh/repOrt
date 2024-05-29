@@ -1,6 +1,9 @@
 import './App.css';
 import Nav from './Nav.js';
+import Noticeboard from './Noticeboard.js';
 import Stats from './Stats.js';
+import TopPerformer from './Top-performer.js';
+
 
 function App() {
   return (
@@ -11,12 +14,20 @@ function App() {
             <Nav />
           </>
         </div>
-        <div className="nav">
+        <div className="stats">
           <>
             <Stats />
           </>
         </div>
-      
+        <div className="notice">
+          <>
+            <Noticeboard />
+          </>
+        </div>
+        <div className="performer">
+          <TopPerformer />
+        </div>
+        
       </header>
     </div>
   );
