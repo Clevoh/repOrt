@@ -1,7 +1,7 @@
 .menu-container {
    display: flex;
    position: relative;
-   margin: 1rem;
+   margin: 0;
 }
 .logo {
    font-size: 2rem;
@@ -18,25 +18,22 @@
    color: #ffffff;
 
 }
-
 .menu-section {
    display: flex;
    flex-direction: column;
    gap: 2rem;
-   padding: 2rem;
- 
-   
+   padding: 2rem; 
 }
 .navlist {
-   display: flex;
+   display: none;
    flex-direction: column;
    background-color: hsl(169, 100%, 8%);
-   position: absolute;
-   left: 5px;
+   position: fixed;
+   left: 0;
    gap: 2rem;
    padding: 2rem;
    height: 100vh;
-   z-index: 1;
+   z-index: 3;
 
 }
 .menu-btn {
@@ -49,8 +46,16 @@
    right: 50px;
    border-style: none;
    background-color: hsl(169, 100%, 8%);
+   /* z-index: 2; */
 }
 .log-link {
    text-decoration: none;
    color: #ffffff;
+}
+.log-out {
+   gap: 2rem;
+   padding: 2rem;
+}
+.nav-logout {
+   list-style-type: none;
 }

@@ -1,12 +1,14 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import './Noticeboard.css'
+
+
 //creates a notice and display a created notice
 // input + button
 // we want to input an image, a text, select the date and have an ellipses for delete
 //let the value for time hold today's dat
-function Noticeboard () {
+function Noticeboard (props) {
     const date = new Date();
     let monthTitle = ['Jan', 'Feb', 'Mar', 'Apr', 'June',
                             'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
@@ -15,25 +17,11 @@ function Noticeboard () {
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
-    let currentDate = `${year}-${"0" + month}-${day}`
-
-    const [toggle, setToggle] = useState(false);
-    const [blurEffect, setBlurEffect] = useState(false);
+    let currentDate = `${year}-${"0" + month}-${day}`;
     const [image, setImage] = useState("");
     const [textValue, setTextValue] = useState("");
     const [dateValue, setDateValue] = useState("");
     const [submitPost, setSubmitPost] = useState("not-active");
-
-    const handleToggle = () => {
-        setToggle(!toggle);
-    }
-    const displayStyle = {
-        display : toggle ? "block" : "none"
-    };
-
-    useEffect(() => {
-        setBlurEffect(toggle)
-    }, [toggle]);
 
     // handles image upload
     const handleImage = (e) => {
@@ -52,12 +40,10 @@ function Noticeboard () {
     const handleText = (e) => {
         setTextValue(e.target.value)
     }
-
     // handles date upload
     const handleDateUpload = (e) => {
         setDateValue(e.target.value);
     }
-
     // handle submit and also check how to add new post without erasing old post and handle delete also
     const handleSubmit = () => {
         setSubmitPost("post-active")
@@ -67,7 +53,7 @@ function Noticeboard () {
             <div className="notice-col">
                 <div className="notice-text">
                     <p>Notice Board</p>
-                    <button className='ellipses' onClick={handleToggle}><FontAwesomeIcon className='ellipses-icon' icon={faEllipsis} /></button>
+                    <button className='ellipses' onClick={props.ptoggle}><FontAwesomeIcon className='ellipses-icon' icon={faEllipsis} /></button>
                 </div>
                 <p>Create a notice of find a message for you!</p>
                 <div className={`notice-con ${submitPost}`}>
@@ -77,7 +63,7 @@ function Noticeboard () {
                         <p className="post-date">{dateValue}</p>
                     </div>
                 </div>
-                <div style={displayStyle} className="input-notice">
+                <div style={props.pdisplay} className="input-notice">
                     <form className='notice-form' action="" method="post">
                         <div className="file">
                             <label htmlFor="story-image">Select an image</label>
@@ -89,8 +75,6 @@ function Noticeboard () {
                     </form>
                 </div>
                 
-            </div>
-            <div className={`${blurEffect ? 'blur-active' : ''}`}>
             </div>
         </div>
         

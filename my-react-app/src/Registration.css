@@ -1,0 +1,43 @@
+.form-mg {
+    margin: 0;
+    padding: 0;
+   
+}
+.form-el {
+    background-color: #F5F8DE;
+    padding: .5rem 2rem;
+}
+
+.select-el {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.student, .parent, .teacher {
+    display: flex;
+    flex-direction: column;
+    background-color: #002A22;
+    color: #ffffff;
+    padding: 1.5rem 4.5rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+
+.student input, .parent input, .teacher input {
+    margin-bottom: 1rem;
+}
+.form-t {
+    display: flex;
+    
+    gap: 6rem;
+    background-color: #002A22; 
+}
+
+.btn-submit {
+    display: inline;
+    width: 5rem;
+    border-radius: .3rem;
+    align-self: center;
+    margin-top: 1.5rem;
+}
