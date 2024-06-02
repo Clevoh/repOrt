@@ -16,7 +16,7 @@ class Student(Base):
     address = Column(String(255))
     gender = Column(String(255))
     sclass = Column(String(255))
-    
+        
     def __init__(self, **kwargs):
         """creates an instance"""
         if kwargs:

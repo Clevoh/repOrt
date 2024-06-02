@@ -3,7 +3,7 @@
 class """
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 Base = declarative_base()
 
 class Database:
@@ -17,8 +17,8 @@ class Database:
 
     def loaddatabase(self):
         """reload database data"""
-        
-        Session = sessionmaker(bind=self._engine)
+        session_factory = sessionmaker(bind=self._engine, expire_on_commit=False)
+        Session = scoped_session(session_factory)
         self._session = Session()
 
     def new(self):

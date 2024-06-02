@@ -32,27 +32,43 @@ function Registration() {
         }
 
     const [selectted, setSelected] = useState("");
-    const [parentValues, setParentValues] = useState(parentInfo)
-    const [studentValues, setStudentValues] = useState("")
-    const [teacherValues, setTeacherValues] = useState(teacherInfo)
-    const regUrl = "/register-student"
+    const [parentValues, setParentValues] = useState("");
+    const [studentValues, setStudentValues] = useState("");
+    const [teacherValues, setTeacherValues] = useState("");
+    let regUrl;
+    let updateInfo;
+
 
     const handleSelect = (e) => {
         setSelected(e.target.value);
     }
+   
 
-    const handleSForm = (e) => {
+    const handleForm = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        let updateStudentInfo = {...studentInfo}
-
-  // Iterating over the entries to log them
+        if (selectted === "student") {
+            regUrl = "/register-student"
+            updateInfo = {...studentInfo}
+        } else if (selectted === "teacher") {
+            regUrl = "/register-teacher";
+            updateInfo = {...teacherInfo}
+        } else {
+            regUrl = "/register-parent"
+            updateInfo = {...parentInfo}
+        }
+        // Iterating over the entries to log them
         for (let [key, value] of formData.entries()) {
-            updateStudentInfo[key] = value;
-    }
-    setStudentValues(updateStudentInfo)
+            updateInfo[key] = value;
+        }
 
-    console.log(studentValues)
+        if (selectted === "student") {
+            setStudentValues(updateInfo);
+        } else if (selectted === "teacher") {
+            setTeacherValues(updateInfo);
+        } else {
+            setParentValues(updateInfo);
+        }
 }
 
 
@@ -73,14 +89,14 @@ function Registration() {
                 console.error("Error:", error);
             }
     }
-        if (studentValues.id !== "") {
-            postInfo(studentValues);
-            console.log("you have me")
-        }
-                
-    console.log("i ran")
-    console.log(studentValues)
-}, [studentValues])
+        if (selectted === "student") {
+            postInfo(studentValues);;
+        } else if (selectted === "teacher") {
+            postInfo(teacherValues);;
+        } else {
+            postInfo(parentValues);;
+        }            
+}, [studentValues,parentValues, teacherValues])
     
     
     return (
@@ -98,7 +114,7 @@ function Registration() {
                     </select> 
                 </form>
                 {/* student form */}
-                <form method='post' onSubmit={handleSForm} className={selectted === "student" ? "student" : "not-active"}>
+                <form method='post' onSubmit={handleForm} className={selectted === "student" ? "student" : "not-active"}>
                 <div className="form-t">
                     <div className="first-form">
                     <label htmlFor="id">id:</label><br />
@@ -126,7 +142,7 @@ function Registration() {
                     <button className="btn-submit" type="submit" name="class" id="class" > Register</button>
                 </form>
                 {/* parent form */}
-                <form method="post" onSubmit={handleSForm} className= {selectted === "parent" ? "parent" : "not-active"}>
+                <form method="post" onSubmit={handleForm} className= {selectted === "parent" ? "parent" : "not-active"}>
                 <div className="form-t">
                     <div className="parent-form1">
                         <label htmlFor="id">id:</label><br /> 
@@ -149,7 +165,7 @@ function Registration() {
                 </form>
               {/* teachers form */}
 
-                <form method="post" className={selectted === "teacher" ? "teacher" : "not-active"}>
+                <form method="post" onSubmit={handleForm} className={selectted === "teacher" ? "teacher" : "not-active"}>
                     <div className="form-t">  
                     <div className="parent-form1">
                         <label htmlFor="id">id:</label> <br />
