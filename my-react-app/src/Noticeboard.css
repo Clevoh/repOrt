@@ -1,0 +1,76 @@
+.notice-col {
+    position: relative;
+    z-index: 2;
+}
+.notice-board {
+    background-color: #F5F8DE;
+    margin: 1rem 0;
+    padding: 2rem;
+    
+}
+.ellipses {
+    border: none;
+    background-color: transparent;
+}
+
+.ellipses-icon {
+    font-size: 1.5rem;
+}
+.notice-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.notice-text p {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.input-notice {
+    width: 85%;
+    position: absolute;
+    top: 3rem;
+    left: 10%;
+    background-color: #F56314;
+    padding: 1rem 3rem;
+    border-radius: .5rem;
+    display: none;
+}
+.notice-form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+.notice-form .file {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+.notice-form input {
+    border: 0.05rem solid #F5F8DE;
+}
+input[type='button'] {
+    width: 8rem;
+    border-radius: .2rem;
+    justify-self: center;
+}
+.notice-container {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+.notice-container .post-image {
+    border-radius: 50%;
+    width: 4rem;
+}
+.post-image img {
+    width: 3rem;
+}
+.not-active {
+    display: none;
+}
+.post-active{
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 1rem;
+}
