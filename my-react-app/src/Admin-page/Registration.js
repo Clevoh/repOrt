@@ -6,37 +6,37 @@ function Registration() {
 
     // student with the highest score in rack column that will be updated every end of term
     // the rank will trigger the right value to fill other column
-    const parentInfo = {firstname : "",
-        lastname : "",
-        address : "",
-        gender : "",
-        phone_number : ""
+    const parentInfo = {firstname: "",
+        lastname: "",
+        address: "",
+        gender: "",
+        phone_number: ""
         }
-    const teacherInfo = {id : "",
-        firstname : "",
-        lastname : "",
-        dob : "",
-        religion : "",
-        bloodgroup : "",
-        address : "",
-        gender : "" }
-    const studentInfo = {id : "",
-        firstname : "",
-        lastname : "",
-        dob : "",
-        religion : "",
-        bloodgroup : "",
-        address : "",
-        gender : "",
-        sclass : ""
+    const teacherInfo = {id: "",
+        firstname: "",
+        lastname: "",
+        dob: "",
+        religion: "",
+        bloodgroup: "",
+        address: "",
+        gender: "" }
+    const studentInfo = {id: "",
+        firstname: "",
+        lastname: "",
+        dob: "",
+        religion: "",
+        bloodgroup: "",
+        address: "",
+        gender: "",
+        sclass: ""
         }
 
     const [selectted, setSelected] = useState("");
     const [parentValues, setParentValues] = useState("");
     const [studentValues, setStudentValues] = useState("");
     const [teacherValues, setTeacherValues] = useState("");
-    let regUrl;
-    let updateInfo;
+    const [regUrl, setRegUrl] = useState("");
+
 
 
     const handleSelect = (e) => {
@@ -47,14 +47,18 @@ function Registration() {
     const handleForm = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
+        console.log(selectted)
+        console.log("i ran 1")
+        let updateInfo;
+
         if (selectted === "student") {
-            regUrl = "/register-student"
+            setRegUrl("/register-student")
             updateInfo = {...studentInfo}
         } else if (selectted === "teacher") {
-            regUrl = "/register-teacher";
+            setRegUrl("/register-teacher");
             updateInfo = {...teacherInfo}
         } else {
-            regUrl = "/register-parent"
+            setRegUrl("/register-parent")
             updateInfo = {...parentInfo}
         }
         // Iterating over the entries to log them
@@ -75,6 +79,7 @@ function Registration() {
     useEffect(() => {
         const postInfo = async (data) => {
             try {
+                console.log(regUrl)
                 const response = await fetch(`${regUrl}`, {
                 method: "POST", // or 'PUT'
                 headers: {
@@ -90,13 +95,13 @@ function Registration() {
             }
     }
         if (selectted === "student") {
-            postInfo(studentValues);;
+            postInfo(studentValues);
         } else if (selectted === "teacher") {
-            postInfo(teacherValues);;
+            postInfo(teacherValues);
         } else {
-            postInfo(parentValues);;
+            postInfo(parentValues);
         }            
-}, [studentValues,parentValues, teacherValues])
+}, [selectted, studentValues, parentValues, teacherValues, regUrl])
     
     
     return (
@@ -178,10 +183,10 @@ function Registration() {
                         <input type="text" name="dob" id="dob" /><br />
                     </div>
                     <div className="parent-form2">
-                        <label htmlFor="id">Religion:</label><br />
+                        <label htmlFor="religion">Religion:</label><br />
                         <input type="text" name="religion" id="religion" /><br />
                         <label htmlFor="bloodgroup">bloodgroup:</label><br />
-                        <input type="text" name="address" id="religion" /><br />
+                        <input type="text" name="bloodgroup" id="bloodgroup" /><br />
                         <label htmlFor="address">address:</label><br />
                         <input type="text" name="address" id="address" /><br />
                         <label htmlFor="gender">gender:</label><br />

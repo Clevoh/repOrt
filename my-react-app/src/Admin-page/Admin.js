@@ -1,4 +1,4 @@
-import './App.css';
+import './Admin.css';
 import Nav from './Nav.js';
 import Noticeboard from './Noticeboard.js';
 import Stats from './Stats.js';
