@@ -17,6 +17,7 @@ function Teacher(props) {
     const [teacherInfo, setTeacherInfo] = useState({})
     const [studentInfo, setStudentInfo] = useState([])
     const [loginResult, setLoginResult] = useState("")
+    const [studentAttendance, setStudentAttendance] = useState([])
 
     const DaysInMonth = (month, year) => {
         return new Date(year, month + 1, 0).getDate();
@@ -76,6 +77,22 @@ function Teacher(props) {
           }
     }
 
+    // handle getting the attendance of each particular day in a month
+    const handleAttendanceInfo = async (date) => {
+    // fetch the information from the database according to the date passed
+    // it fetches the info base on the class assigned to the teacher
+    // the names of student, the attendance status of the student
+        try {
+            const response = await fetch(`url-studentclass-${date}`)
+            const attendance = response.json()
+            setStudentAttendance(attendance)
+        } catch (error) {
+            if (response.status === 400) {
+                setStudentAttendance("No attendance to be display")
+            }
+        }
+    }   
+
 
     // make a call to
     // fetch teachers personal information according to the login response
@@ -110,7 +127,6 @@ function Teacher(props) {
     }, [])
     
 
-    
     return(
         <div class="container-fluid">
             <div>
@@ -146,7 +162,7 @@ function Teacher(props) {
                                         const date = i * 7 + (j - firstDay) + 1
                                         if (date <= (DaysInMonth(currentMonth, currentYear)))
                                             {
-                                                return (<td key={j}>{date}</td>)
+                                                return (<button onClick={() => handleAttendanceInfo(date)}><td key={j}>{date}</td></button>)
                                             }
                                         else {
                                             return (<td key={j}></td>)
@@ -190,6 +206,31 @@ function Teacher(props) {
                 </table>
                 <button type="submit">Submit</button>
             </form>
+        </div>
+            {/* {display attendance according to the date that is clicked} */}
+
+        <div className=" row display-attendance" >
+        <table>
+        <thead>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Attendance</th>
+        </thead>
+        <tbody>
+            {
+                // array of dictionary
+                studentAttendance.map((el, i) => (
+                    <tr>
+                        <td key={i}>{el["firstname"]}</td>
+                        <td key={i}>{el["lastname"]}</td>
+                        <td key={i}>{e["status"]}</td>
+                    </tr>
+                ))
+            }
+
+        </tbody>
+    </table>
+            
         </div>
 
     </div>
