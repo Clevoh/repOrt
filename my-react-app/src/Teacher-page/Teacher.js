@@ -4,17 +4,19 @@ import { useState, useEffect } from "react";
 import "./Teacher.css"
 function Teacher(props) {
     // fetch the teachers information
-    // create calender component
+    // create calender component when they click on a date
     const monthsOfYear = ['Jan', 'Feb', 'Mar', 
                     'Apr', 'May', 'Jun', 'Jul', 'Aug',
                     'Sep', 'Oct', 'Nov', 'Dec'
                 ]
     const weekDays = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"]
     const today = new Date()
+    const currentDate = today.toISOString().split('T')[0];
     const [currentMonth, setCurrentMonth] = useState(today.getMonth());
     const [currentYear, setCurrentYear] = useState(today.getFullYear());
     const [teacherInfo, setTeacherInfo] = useState({})
-    const [studentInfo, setStudentInfo] = useState({})
+    const [studentInfo, setStudentInfo] = useState([])
+    const [loginResult, setLoginResult] = useState("")
 
     const DaysInMonth = (month, year) => {
         return new Date(year, month + 1, 0).getDate();
@@ -37,6 +39,44 @@ function Teacher(props) {
         }
        
     }
+    // handle form submission
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const formData = new FormData(e.target)
+        let allStudentDetails = []
+        let eachStudent = {}
+        for (const [key, val] of formData) {
+            // make an array with the studentdetails
+            for (let i = 0; i < formData.length; i++) {
+                if (i / 4 != 0) {
+                    // store all the four information pertaing to each student
+                    eachStudent[key] = val
+                } else {
+                    allStudentDetails.push(eachStudent)
+                }
+            }
+        }
+        // post student data
+        const postStudentInfo = () => {
+            try {
+                // post fname, lname of a particular class
+                response = fetch('/post-student-info', {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(allStudentDetails),
+                  })
+                result = response.json()
+                setLoginResult(result)
+            } catch (error) {
+                console.log(`Error: ${error}`)
+            }
+            postStudentInfo();
+          }
+    }
+
+
     // make a call to
     // fetch teachers personal information according to the login response
     useEffect(() => {
@@ -73,6 +113,9 @@ function Teacher(props) {
     
     return(
         <div class="container-fluid">
+            <div>
+                <p>{loginResult}</p>
+            </div>
             <div className=" row teacher-container">
                 <div className="col- 6 teacher-info">
                     <div className="infor-teach">
@@ -117,33 +160,35 @@ function Teacher(props) {
             
         </div>
         <div className="form-container">
+            {/* display students assigned to teachers and allow them submit the day attendance */}
             <form method="post" onsubmit={handleSubmit}>
-            <table>
-                <thead>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Present</th>
-                    <th>Absent</th>
-                    <th>Date</th>
-                </thead>
-                {/* {from the array of all students in a class display the names
-                    and mark the attendance state
-                }*/}
-                <tbody>
-                   
-                {(studentInfo).map((el, i) => {
-                    // studentinfo is an array of objects
-                     <tr>
-                        <td key={i}> <input type="text" defaultValue={el[firstname]} name="firstname" id="firstname" /></td>
-                        <td key={i}><input type="text" defaultValue={el[lastname]} name="lastname" id="lastname" /></td>
-                        <td key={i}><input type="radio" name="present" id="present" /></td>
-                        <td key={i}><input type="radio" name="absent" id="absent" /></td>
-                        <td key={i}><input type="date" defaultValue={currentDate} name="todaydate" id="todaydate" /></td>
-                    </tr>
-                })}
+                <table>
+                    <thead>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Date</th>
+                    </thead>
+                    {/* {from the array of all students in a class display the names
+                        and mark the attendance state
+                    }*/}
+                    <tbody>
                     
-                </tbody>
-            </table>
+                    {(studentInfo).map((el, i) => {
+                        // studentinfo is an array of objects
+                        return (<tr>
+                            <td key={i}> <input type="text" defaultValue={el["firstname"]} name="firstname" id="firstname" /></td>
+                            <td key={i}><input type="text" defaultValue={el["lastname"]} name="lastname" id="lastname" /></td>
+                            <td key={i}><input type="radio" name={`status-${i}`} id="present" value="present" /></td>
+                            <td key={i}><input type="radio" name={`status-${i}`} id="absent" value='absent' checked /></td>
+                            <td key={i}><input type="date" defaultValue={currentDate} name="todaydate" id="todaydate" /></td>
+                        </tr>)
+                    })}
+        
+                    </tbody>
+                </table>
+                <button type="submit">Submit</button>
             </form>
         </div>
 
