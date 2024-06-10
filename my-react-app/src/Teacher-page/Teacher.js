@@ -107,8 +107,7 @@ function Teacher(props) {
         }
         fetchTeacherInfo();
       }
-      
-      
+        
     }, [])
     
     // fetch students information as teacher logs in
@@ -125,7 +124,6 @@ function Teacher(props) {
         fetchStudentInfo();
       }
     }, [])
-    
 
     return(
         <div class="container-fluid">
