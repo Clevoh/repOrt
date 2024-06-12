@@ -1,9 +1,9 @@
 import './Admin.css';
-import Nav from './Nav.js';
-import Noticeboard from './Noticeboard.js';
-import Stats from './Stats.js';
-import Registration from './Registration.js';
-import Blur from './Blur.js';
+import Nav from './Nav.jsx';
+import Noticeboard from './Noticeboard.jsx';
+import Stats from './Stats.jsx';
+import Registration from './Registration.jsx';
+import Blur from './Blur.jsx';
 import {useEffect, useState} from 'react';
 
 
@@ -24,27 +24,18 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="nav">
-          <>
             <Nav />
-          </>
         </div>
         <div className="stats">
-          <>
             <Stats />
-          </>
         </div>
         <div className="notice">
-          <>
             <Noticeboard  ptoggle = {handleToggle} pdisplay = {displayStyle} />
-          </>
         </div>
         <div className="performer">
           <Registration />
         </div>
-        <>
           <Blur pblur = {blurEffect}/>
-        </>
-        
       </header>
     </div>
   );
