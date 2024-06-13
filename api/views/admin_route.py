@@ -1,20 +1,27 @@
 from views import bp_views
 from flask import request, jsonify, abort
 import json
-from api.models
+from api.models.admin import Admin
+from api.models.teacher import Teacher
 
 
 @bp_views.route("/login", methods=["GET", "POST"])
 def login():
     """ take care of login """
     # get the request
-    if request.methods == "GET":
+    if request.methods == "POST":
         res = request.get_json()
         data = json.loads(res)
+        username = data.get("username")
+        password = data.get("password")
         if data["role"] == "admin":
-            pass
+            # query the database for the username, password and id
+            admin = admin.query.filter_by(username=username).first()
+            if admin and admin.check_password(password):
+                return (jsonify({"message":"succesfully logged in"}), 200)
         elif data["role"] == "teacher":
-            pass
-        else:
-            abort(404)
-    return jsonify("login successful")
+            teacher = teacher.query.filter_by(username=username).first()
+            if teacher and teacher.check_password(password):
+                return (jsonify({"message":"succesfully logged in"}), 200)
+
+    abort(404)
