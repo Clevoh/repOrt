@@ -35,7 +35,7 @@ function Registration() {
     const [parentValues, setParentValues] = useState("");
     const [studentValues, setStudentValues] = useState("");
     const [teacherValues, setTeacherValues] = useState("");
-
+    const [regUrl, setRegUrl] = useState()
 
 
     const handleSelect = (e) => {

@@ -1,0 +1,30 @@
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from config import config
+from dotenv import load_dotenv
+# from flask_login import LoginManager
+from api.views import bp_views 
+
+db = SQLAlchemy()
+# login_manager = LoginManager()
+
+def create_app(config_name):
+    load_dotenv()
+
+    app = Flask(__name__)
+    app.config.from_object(config[config_name])
+
+    ## register blueprint
+    from api.views import bp_views
+    app.register_blueprint(bp_views)
+
+    db.init_app(app)
+    # login_manager.init_app(app)
+    # login_manager.login_view = 'login'
+
+    with app.app_context():
+        # from .routes import register_routes  # Updated import statement
+        # register_routes(app)
+        db.create_all()
+
+    return app
