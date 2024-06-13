@@ -35,7 +35,7 @@ function Registration() {
     const [parentValues, setParentValues] = useState("");
     const [studentValues, setStudentValues] = useState("");
     const [teacherValues, setTeacherValues] = useState("");
-
+    const [regUrl, setRegUrl] = useState()
 
 
     const handleSelect = (e) => {
@@ -171,7 +171,7 @@ function Registration() {
 
                 <form method="post" onSubmit={handleForm} className={selectted === "teacher" ? "teacher" : "not-active"}>
                     <div className="form-t">  
-                    <div className="parent-form1">
+                    <div className="teacher-form1">
                         <label htmlFor="id">id:</label> <br />
                         <input type="text" name="id" id="id" /><br />
                         <label htmlFor="fname">firstname:</label><br />
@@ -181,7 +181,7 @@ function Registration() {
                         <label htmlFor="dob">Date of Birth:</label>
                         <input type="text" name="dob" id="dob" /><br />
                     </div>
-                    <div className="parent-form2">
+                    <div className="teacher-form2">
                         <label htmlFor="religion">Religion:</label><br />
                         <input type="text" name="religion" id="religion" /><br />
                         <label htmlFor="bloodgroup">bloodgroup:</label><br />
@@ -190,6 +190,8 @@ function Registration() {
                         <input type="text" name="address" id="address" /><br />
                         <label htmlFor="gender">gender:</label><br />
                         <input type="text" name="gender" id="gender" />
+                        <label htmlFor="class">Class</label><br />
+                        <input type="text" name="sclass" id="class" />
                     </div>
                     </div>
                     <button className="btn-submit" type="submit" name="class" id="class"> Register</button>
