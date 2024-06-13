@@ -1,4 +1,4 @@
-from werkzeug.security import check_password_hash
+
 from . import db
 
 class Attendance(db.Model):

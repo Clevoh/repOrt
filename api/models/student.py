@@ -1,4 +1,4 @@
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from . import db
 
 class Student(db.Model):
@@ -16,3 +16,9 @@ class Student(db.Model):
 
     def __repr__(self):
         return f'<Student {self.name}>'
+    
+    def hash_password(self, password):
+        self.hash_password = generate_password_hash(password)
+    
+    def check_password(self, password):
+        return check_password_hash(self.hash_password, password)
