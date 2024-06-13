@@ -12,7 +12,7 @@ class Teacher(db.Model):
     address = db.Column(db.String(80), nullable=False)
     bloodgroup = db.Column(db.String(80), nullable=False)
 
-     def __repr__(self):
+    def __repr__(self):
         return f'<Teacher {self.name}>'
 
     def hash_password(self, password):

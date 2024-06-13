@@ -79,7 +79,7 @@ function Registration() {
         const postInfo = async (data) => {
             try {
                 console.log(regUrl)
-                const response = await fetch("/signup", {
+                const response = await fetch(`${regUrl}`, {
                 method: "POST", // or 'PUT'
                 headers: {
                     "Content-Type": "application/json",
