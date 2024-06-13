@@ -71,7 +71,7 @@ function Teacher() {
             const postStudentInfo = async() => {
                 try {
                     // post firstname, lastname of a particular class
-                    const response = await fetch('/post-student-info', {
+                    const response = await fetch('/view_attendance', {
                         method: "POST",
                         headers: {
                           "Content-Type": "application/json"

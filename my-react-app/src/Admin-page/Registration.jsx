@@ -35,7 +35,6 @@ function Registration() {
     const [parentValues, setParentValues] = useState("");
     const [studentValues, setStudentValues] = useState("");
     const [teacherValues, setTeacherValues] = useState("");
-    const [regUrl, setRegUrl] = useState("");
 
 
 
@@ -80,7 +79,7 @@ function Registration() {
         const postInfo = async (data) => {
             try {
                 console.log(regUrl)
-                const response = await fetch(`${regUrl}`, {
+                const response = await fetch("/signup", {
                 method: "POST", // or 'PUT'
                 headers: {
                     "Content-Type": "application/json",
