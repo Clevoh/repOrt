@@ -1,6 +1,5 @@
 # wtf forms are not used when form data will be submitted via api
-
-#apps/forms.py
+# apps/forms.py
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField, HiddenField
 from wtforms.validators import DataRequired, EqualTo
