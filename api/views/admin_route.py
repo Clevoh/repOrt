@@ -25,3 +25,5 @@ def login():
                 return (jsonify({"message":"succesfully logged in"}), 200)
 
     abort(404)
+
+    @bp_views.route("/register", methods=["GET", "POST"])
