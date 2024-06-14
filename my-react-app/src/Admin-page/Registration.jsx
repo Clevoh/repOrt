@@ -6,38 +6,55 @@ function Registration() {
 
     // student with the highest score in rack column that will be updated every end of term
     // the rank will trigger the right value to fill other column
-    const parentInfo = {firstname: "",
-        lastname: "",
-        address: "",
-        gender: "",
-        phone_number: ""
-        }
-    const teacherInfo = {id: "",
-        firstname: "",
-        lastname: "",
-        dob: "",
-        religion: "",
-        bloodgroup: "",
-        address: "",
-        gender: "" }
-    const studentInfo = {id: "",
-        firstname: "",
-        lastname: "",
-        dob: "",
-        religion: "",
-        bloodgroup: "",
-        address: "",
-        gender: "",
-        sclass: ""
-        }
 
     const [selectted, setSelected] = useState("");
-    const [parentValues, setParentValues] = useState("");
-    const [studentValues, setStudentValues] = useState("");
-    const [teacherValues, setTeacherValues] = useState("");
+    const [parentValues, setParentValues] = useState({"id": "",
+                                                    "firstname": "", 
+                                                    "lastname": "",
+                                                    "address": "",
+                                                    "gender": "",
+                                                    "dob": "",
+                                                    "bloogroup":"",
+                                                    "religion": "",
+                                                    "username": "",
+                                                    "password": ""
+                                                    });
+    const [studentValues, setStudentValues] = useState({"id": "",
+                                                    "firstname": "", 
+                                                    "lastname": "",
+                                                    "address": "",
+                                                    "gender": "",
+                                                    "dob": "",
+                                                    "bloogroup":"",
+                                                    "religion": "",
+                                                    "username": "",
+                                                    "password": "",
+                                                    "sclass": ""});
+    const [teacherValues, setTeacherValues] = useState({"id": "",
+                                                    "firstname": "", 
+                                                    "lastname": "",
+                                                    "address": "",
+                                                    "gender": "",
+                                                    "dob": "",
+                                                    "bloogroup":"",
+                                                    "religion": "",
+                                                    "username": "",
+                                                    "password": "",
+                                                    "sclass": "" });
     const [regUrl, setRegUrl] = useState()
-
-
+    const [id, setId] = useState("")
+    const [firstname, setFirstame] = useState("")
+    const [lastname, setLastame] = useState("")
+    const [dob, setDob] = useState("")
+    const [religion, setReligion] = useState("")
+    const [address, setAddress] = useState("")
+    const [bloodgroup, setBloodgroup] = useState("")
+    const [gender, setGender] = useState("")
+    const [sclass, setSclass] = useState("")
+    const [password, setPassword] = useState("")
+    const [username, setUsername] = useState("")
+    
+// get the selected value
     const handleSelect = (e) => {
         setSelected(e.target.value);
     }
@@ -45,40 +62,69 @@ function Registration() {
 
     const handleForm = (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        console.log(selectted)
-        console.log("i ran 1")
-        let updateInfo;
+        // const formData = new FormData(e.target);
+        // console.log(selectted)
+        // console.log("i ran 1")
+        // let updateInfo;
 
         if (selectted === "student") {
             setRegUrl("/register-student")
-            updateInfo = {...studentInfo}
+            setStudentValues(...studentValues, {"id": id,
+                                                    "firstname": firstname, 
+                                                    "lastname": lastname,
+                                                    "address": address,
+                                                    "gender": gender,
+                                                    "dob": dob,
+                                                    "bloogroup": bloodgroup,
+                                                    "religion": religion,
+                                                    "sclass": sclass,
+                                                    "username": username,
+                                                    "password": password})
         } else if (selectted === "teacher") {
             setRegUrl("/register-teacher");
-            updateInfo = {...teacherInfo}
+            setTeacherValues(...teacherValues, {"id": id,
+                                                    "firstname": firstname, 
+                                                    "lastname": lastname,
+                                                    "address": address,
+                                                    "gender": gender,
+                                                    "dob": dob,
+                                                    "bloogroup": bloodgroup,
+                                                    "religion": religion,
+                                                    "sclass": sclass,
+                                                    "username": username,
+                                                    "password": password})
         } else {
             setRegUrl("/register-parent")
-            updateInfo = {...parentInfo}
+            setParentValues(...parentValues, {"id": id,
+                                                    "firstname": firstname, 
+                                                    "lastname": lastname,
+                                                    "address": address,
+                                                    "gender": gender,
+                                                    "dob": dob,
+                                                    "bloogroup": bloodgroup,
+                                                    "religion": religion,
+                                                    "username": username,
+                                                    "password": password})
         }
         // Iterating over the entries to log them
-        for (let [key, value] of formData.entries()) {
-            updateInfo[key] = value;
-        }
+        // for (let [key, value] of formData.entries()) {
+        //     updateInfo[key] = value;
 
-        if (selectted === "student") {
-            setStudentValues(updateInfo);
-        } else if (selectted === "teacher") {
-            setTeacherValues(updateInfo);
-        } else {
-            setParentValues(updateInfo);
-        }
+
+        // if (selectted === "student") {
+        //     setStudentValues(updateInfo);
+        // } else if (selectted === "teacher") {
+        //     setTeacherValues(updateInfo);
+        // } else {
+        //     setParentValues(updateInfo);
+        // }
 }
 
 
     useEffect(() => {
         const postInfo = async (data) => {
             try {
-                console.log(regUrl)
+                // console.log(regUrl)
                 const response = await fetch(`${regUrl}`, {
                 method: "POST", // or 'PUT'
                 headers: {
@@ -86,9 +132,11 @@ function Registration() {
                 },
                 body: JSON.stringify(data),
                 });
-
-                const result = await response.json();
-                console.log("Success:", result);
+                if (response === 200 ) {
+                    const result = await response.json();
+                }
+                
+                console.log(result);
             } catch (error) {
                 console.error("Error:", error);
             }
@@ -122,47 +170,59 @@ function Registration() {
                 <div className="form-t">
                     <div className="first-form">
                     <label htmlFor="id">id:</label><br />
-                    <input type="text"  name="id" id="" /><br />
+                    <input type="text"  name="id" value={id} onChange={(e) => setId(e.target.value)} /><br />
                     <label htmlFor="firstname">firstname:</label><br />
-                    <input type="text" name="firstname" id="firstname" /><br />
+                    <input type="text" name="firstname" value={firstname} id="firstname" onChange={(e) => setFirstame(e.target.value)} /><br />
                     <label htmlFor="lastname">Lastname:</label><br />
-                    <input type="text" name="lastname" id="lastname" /><br />
+                    <input type="text" name="lastname" value={lastname} id="lastname" onChange={(e) => setLastame(e.target.value)} /><br />
                     <label htmlFor="dob">Date of Birth:</label><br />
-                    <input type="text" name="dob" id="dob" /><br />
+                    <input type="text" name="dob" value={dob} id="dob" onChange={(e) => setDob(e.target.value)} /><br />
                     <label htmlFor="id">Religion:</label><br />
-                    <input type="text" name="religion" id="religion" /><br />
+                    <input type="text" name="religion" value={religion} id="religion" onChange={(e) => setReligion(e.target.value)} /><br />
+                    <label htmlFor="id">username:</label><br />
+                    <input type="text" name="username" value={username} id="username" onChange={(e) => setUsername(e.target.value)} /><br />
                     </div>
                     <div className="second-form">
                         <label htmlFor="bloodgroup">bloodgroup:</label><br />
-                        <input type="text" name="bloodgroup" id="religion" /><br />
+                        <input type="text" name="bloodgroup" value={bloodgroup} id="bloodgroup" onChange={(e) => setBloodgroup(e.target.value)} /><br />
                         <label htmlFor="address">address:</label><br />
-                        <input type="text" name="address" id="address" /><br />
+                        <input type="text" name="address" id="address" value={address} onChange={(e) => setAddress(e.target.value)} /><br />
                         <label htmlFor="gender">gender:</label><br />
-                        <input type="text" name="gender" id="gender" /><br />
+                        <input type="text" name="gender" value={gender} id="gender" onChange={(e) => setGender(e.target.value)} /><br />
                         <label htmlFor="class">Class</label><br />
-                        <input type="text" name="sclass" id="class" />
+                        <input type="text" name="sclass" id="class" value={sclass} onChange={(e) => setSclass(e.target.value)} />
+                        <label htmlFor="id">Password:</label><br />
+                        <input type="text" name="password" value={password} id="password" onChange={(e) => setPassword(e.target.value)} /><br />
                     </div>
                     </div>
-                    <button className="btn-submit" type="submit" name="class" id="class" > Register</button>
+                    <button className="btn-submit" type="submit" name="submit" id="submit" > Register</button>
                 </form>
                 {/* parent form */}
                 <form method="post" onSubmit={handleForm} className= {selectted === "parent" ? "parent" : "not-active"}>
                 <div className="form-t">
                     <div className="parent-form1">
-                        <label htmlFor="id">id:</label><br /> 
-                        <input type="text" name="id" id="id" /><br />
-                        <label htmlFor="firssname"> firstname:</label> <br />
-                        <input type="text" name="fname" id="fname" /><br />
-                        <label htmlFor="lname">Lastname:</label> <br />
-                        <input type="text" name="lname" id="lname" /><br />
+                    <label htmlFor="id">id:</label><br />
+                    <input type="text"  name="id" value={id} onChange={(e) => setId(e.target.value)} /><br />
+                    <label htmlFor="firstname">firstname:</label><br />
+                    <input type="text" name="firstname" value={firstname} id="firstname" onChange={(e) => setFirstame(e.target.value)} /><br />
+                    <label htmlFor="lastname">Lastname:</label><br />
+                    <input type="text" name="lastname" value={lastname} id="lastname" onChange={(e) => setLastame(e.target.value)} /><br />
+                    <label htmlFor="dob">Date of Birth:</label><br />
+                    <input type="text" name="dob" id="dob" value={dob} onChange={(e) => setDob(e.target.value)} /><br />
+                    <label htmlFor="id">Religion:</label><br />
+                    <input type="text" name="religion" id="religion" value={religion} onChange={(e) => setReligion(e.target.value)} /><br />
+                    <label htmlFor="id">username:</label><br />
+                    <input type="text" name="username" value={username} id="username" onChange={(e) => setUsername(e.target.value)} /><br />
                     </div>
                     <div className="parent-form2">
-                        <label htmlFor="id">Religion:</label><br />
-                        <input type="text" name="religion" id="religion" /><br />
-                        <label htmlFor="address">address:</label> <br />
-                        <input type="text" name="address" id="address" /><br />
-                        <label htmlFor="gender">gender:</label> <br />
-                        <input type="text" name="gender" id="gender" />
+                    <label htmlFor="bloodgroup">bloodgroup:</label><br />
+                        <input type="text" name="bloodgroup" value={bloodgroup} id="bloodgroup" onChange={(e) => setBloodgroup(e.target.value)} /><br />
+                        <label htmlFor="address">address:</label><br />
+                        <input type="text" name="address" value={address} id="address" onChange={(e) => setAddress(e.target.value)} /><br />
+                        <label htmlFor="gender">gender:</label><br />
+                        <input type="text" name="gender" value={gender} id="gender" onChange={(e) => setGender(e.target.value)} /><br />
+                        <label htmlFor="id">Password:</label><br />
+                        <input type="text" name="password" value={password} id="password" onChange={(e) => setPassword(e.target.value)} /><br />
                     </div>
                     </div>
                     <button className="btn-submit" type="submit" name="class" id="class"> Register</button>
@@ -172,26 +232,30 @@ function Registration() {
                 <form method="post" onSubmit={handleForm} className={selectted === "teacher" ? "teacher" : "not-active"}>
                     <div className="form-t">  
                     <div className="teacher-form1">
-                        <label htmlFor="id">id:</label> <br />
-                        <input type="text" name="id" id="id" /><br />
-                        <label htmlFor="fname">firstname:</label><br />
-                        <input type="text" name="fname" id="fname" /><br />
-                        <label htmlFor="lname">Lastname:</label><br />
-                        <input type="text" name="lname" id="lname" /><br />
-                        <label htmlFor="dob">Date of Birth:</label>
-                        <input type="text" name="dob" id="dob" /><br />
+                    <label htmlFor="id">id:</label><br />
+                    <input type="text"  name="id" value={id} onChange={(e) => setId(e.target.value)} /><br />
+                    <label htmlFor="firstname">firstname:</label><br />
+                    <input type="text" name="firstname" value={firstname} id="firstname" onChange={(e) => setFirstame(e.target.value)} /><br />
+                    <label htmlFor="lastname">Lastname:</label><br />
+                    <input type="text" name="lastname" id="lastname" value={lastname} onChange={(e) => setLastame(e.target.value)} /><br />
+                    <label htmlFor="dob">Date of Birth:</label><br />
+                    <input type="text" name="dob" id="dob" value={dob} onChange={(e) => setDob(e.target.value)} /><br />
+                    <label htmlFor="id">Religion:</label><br />
+                    <input type="text" name="religion" id="religion" value={religion} onChange={(e) => setReligion(e.target.value)} /><br />
+                    <label htmlFor="id">username:</label><br />
+                    <input type="text" name="username" value={username} id="username" onChange={(e) => setUsername(e.target.value)} /><br />
                     </div>
                     <div className="teacher-form2">
-                        <label htmlFor="religion">Religion:</label><br />
-                        <input type="text" name="religion" id="religion" /><br />
-                        <label htmlFor="bloodgroup">bloodgroup:</label><br />
-                        <input type="text" name="bloodgroup" id="bloodgroup" /><br />
+                    <label htmlFor="bloodgroup">bloodgroup:</label><br />
+                        <input type="text" name="bloodgroup" value={bloodgroup} id="bloodgroup" onChange={(e) => setBloodgroup(e.target.value)} /><br />
                         <label htmlFor="address">address:</label><br />
-                        <input type="text" name="address" id="address" /><br />
+                        <input type="text" name="address" value={address} id="address" onChange={(e) => setAddress(e.target.value)} /><br />
                         <label htmlFor="gender">gender:</label><br />
-                        <input type="text" name="gender" id="gender" />
+                        <input type="text" name="gender" value={gender} id="gender" onChange={(e) => setGender(e.target.value)} /><br />
                         <label htmlFor="class">Class</label><br />
-                        <input type="text" name="sclass" id="class" />
+                        <input type="text" name="sclass" id="class" value={sclass} onChange={(e) => setClass(e.target.value)} />
+                        <label htmlFor="id">Password:</label><br />
+                        <input type="text" name="password" value={password} id="password" onChange={(e) => setPassword(e.target.value)} /><br />
                     </div>
                     </div>
                     <button className="btn-submit" type="submit" name="class" id="class"> Register</button>
