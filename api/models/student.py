@@ -16,3 +16,7 @@ class Student(db.Model):
 
     def __repr__(self):
         return f'<Student {self.name}>'
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
