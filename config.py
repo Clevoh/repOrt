@@ -3,7 +3,7 @@ import os
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'fhhjsjskhfsdjshjjska'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'mysql+mysqldb://judith:judithukamaka@localhost/report'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'mysql+mysqldb://judith:yourpassword@localhost/report'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
