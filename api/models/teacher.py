@@ -7,6 +7,7 @@ class Teacher(db.Model):
     lastname =  db.Column(db.String(80), nullable=False)
     gender = db.Column(db.String(80), nullable=False)
     sclass = db.Column(db.String(80), nullable=False)
+    username = db.Column(db.String(80), nullable=False)
     dateofbirth = db.Column(db.String(80), nullable=False)
     religion = db.Column(db.String(80), nullable=False)
     address = db.Column(db.String(80), nullable=False)

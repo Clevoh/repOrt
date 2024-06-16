@@ -18,7 +18,7 @@ const handleForm = (e) => {
     //     console.log(data)
     //     formInfo[data[0]] = data[1]
     // }
-    SetData(...data, {"id": id, "username": username, "role": role, "password": password },)
+    SetData(prevData => ({...prevData, "id": id, "username": username, "role": role, "password": password }))
 }
 
 useEffect(() => {

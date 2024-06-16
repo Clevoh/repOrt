@@ -6,11 +6,12 @@ class Admin(db.Model):
     firstname = db.Column(db.String(80), nullable=False)
     lastname =  db.Column(db.String(80), nullable=False)
     gender = db.Column(db.String(80), nullable=False)
-    sclass = db.Column(db.String(80), nullable=False)
+    username = db.Column(db.String(80), nullable=False)
     dateofbirth = db.Column(db.String(80), nullable=False)
     religion = db.Column(db.String(80), nullable=False)
     address = db.Column(db.String(80), nullable=False)
     bloodgroup = db.Column(db.String(80), nullable=False)
+    hash_password = db.Column(db.String(80), nullable=False)
 
     def __repr__(self):
         return f'<Teacher {self.name}>'

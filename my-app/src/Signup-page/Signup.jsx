@@ -28,16 +28,16 @@ function Signup() {
 
 const handleForm = (e) => {
     e.preventDefault()
-    setData(...data, {"id": id,
+    setData(previousData => ({...previousData, "id": id,
         "firstname": firstname, 
         "lastname": lastname,
         "address": address,
         "gender": gender,
         "dob": dob,
-        "bloogroup": bloodgroup,
+        "bloodgroup": bloodgroup,
         "religion": religion,
         "username": username,
-        "password": password})
+        "password": password}))
 }
 
     useEffect(() => {
@@ -57,11 +57,11 @@ const handleForm = (e) => {
             }
         
         handlePost()
-    })
+    }, [data])
 
     return (
         <div className="container-fluid admin-signup">
-            {/* teachers form */}
+        {/* {admin-form} */}
             <div className="signup-container">
 
             <form method="post" onSubmit={handleForm}>
@@ -90,7 +90,7 @@ const handleForm = (e) => {
                         <label htmlFor="class">Class</label><br />
                         <input type="text" name="sclass" id="class" value={sclass} onChange={(e) => setSclass(e.target.value)} /><br/>
                         <label htmlFor="id">Password:</label><br />
-                        <input type="text" name="password" value={password} id="password" onChange={(e) => setPassword(e.target.value)} /><br />
+                        <input type="password" name="password" value={password} id="password" onChange={(e) => setPassword(e.target.value)} /><br />
                         </div>
                     </div>
                     <button type="submit">Signup</button>

@@ -12,7 +12,8 @@ class Student(db.Model):
     address = db.Column(db.String(80), nullable=False)
     bloodgroup = db.Column(db.String(80), nullable=False)
     sclass = db.Column(db.String(80), nullable=False)
-    attendances = db.relationship('Attendance', backref='student', lazy=True)  # Relationship to Attendance
+    attendances = db.relationship('Attendance', backref='student', lazy=True)  
+    # Relationship to Attendance
 
     def __repr__(self):
         return f'<Student {self.name}>'
