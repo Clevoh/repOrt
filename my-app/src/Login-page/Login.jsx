@@ -52,10 +52,10 @@ useEffect(() => {
 
     return (
         <div className="fluid-container login-container">
-            <nav className="nav-comp">
+            {/* <nav className="nav-comp">
                 <Link to="/login">Admin</Link>
                 <Link to="/login">Teacher</Link>
-            </nav>
+            </nav> */}
             <div className="login-page">
             <div className="image">
                 <img src={require("../images/studentwithbook.png")} alt="school" />
@@ -87,6 +87,7 @@ useEffect(() => {
         
                     </form>
                 </div>
+                <Link to="/admin-signup">Sign up as an Admin</Link>
             </div>
         </div>
     </div>

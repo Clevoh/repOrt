@@ -135,8 +135,6 @@ function Registration() {
                 if (response === 200 ) {
                     const result = await response.json();
                 }
-                
-                console.log(result);
             } catch (error) {
                 console.error("Error:", error);
             }
@@ -253,7 +251,7 @@ function Registration() {
                         <label htmlFor="gender">gender:</label><br />
                         <input type="text" name="gender" value={gender} id="gender" onChange={(e) => setGender(e.target.value)} /><br />
                         <label htmlFor="class">Class</label><br />
-                        <input type="text" name="sclass" id="class" value={sclass} onChange={(e) => setClass(e.target.value)} />
+                        <input type="text" name="sclass" id="class" value={sclass} onChange={(e) => setSclass(e.target.value)} />
                         <label htmlFor="id">Password:</label><br />
                         <input type="text" name="password" value={password} id="password" onChange={(e) => setPassword(e.target.value)} /><br />
                     </div>

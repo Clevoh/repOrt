@@ -1,11 +1,15 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from config import config
 from dotenv import load_dotenv
 # from flask_login import LoginManager
-from api.views import bp_views 
+from api.views import bp_views
+from api.models.admin import Admin
+from api.models.student import Student
+from api.models.teacher import Teacher
+from api.models.attendance import Attendance
+from api.models import db
 
-db = SQLAlchemy()
+# db = SQLAlchemy()
 # login_manager = LoginManager()
 
 def create_app(config_name):
@@ -15,7 +19,7 @@ def create_app(config_name):
     app.config.from_object(config[config_name])
 
     ## register blueprint
-    from api.views import bp_views
+    
     app.register_blueprint(bp_views)
 
     db.init_app(app)

@@ -4,7 +4,7 @@ import Login from './Login-page/Login.jsx'
 import Teacher from './Teacher-page/Teacher.jsx'
 import { useState } from 'react'
 import Notfound from './Notfound.jsx'
-
+import Signup from "./Signup-page/Signup.jsx"
 
 function App() {
     const [isLogged, setIsLogged] = useState(false)
@@ -18,6 +18,7 @@ function App() {
             element={<Login />} />
             <Route  path="/admin" element={isLogged && loginRole === "admin" ? <Admin /> : <Navigate replace to={"/"} />} />
             <Route path="/teacher/:userid" element={isLogged && loginRole ==="teacher" ? <Teacher /> : <Navigate replace to={"/"} />} />
+            <Route path="/admin-signup" element={<Signup />} />
             <Route path="*" element={<Notfound />} />
         </Routes>
     )

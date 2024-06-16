@@ -1,0 +1,42 @@
+.admin-signup{
+    background-color: #f3f8ca ;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #F5F8DE;
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+.signup-container {
+    padding: 5rem;
+    background-color:  #002A22;
+    border-radius: .5rem;
+}
+
+input {
+    margin-bottom: .6rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    margin-top: 1rem;
+    font-size: 1.05rem;
+    background-color: #ffffff;
+    padding: .5rem;
+    border-style: none;
+    font-weight: 500;
+    border-radius: .2rem;
+}
+
+button:hover {
+    background-color: #F56314;
+    color: #ffffff;
+}
