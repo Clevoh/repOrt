@@ -55,7 +55,7 @@ def register_admin():
         data = request.get_json()
         admin = Admin(id=data.get("id"),firstname=data["firstname"] ,
                             lastname=data["lastname"], address=data["address"], gender=data["gender"], dateofbirth=data["dob"], bloodgroup=data["bloodgroup"], religion=data["religion"], username=data["username"])
-        admin.hash_password(data.get("password"))
+        admin.hashing_password(data.get("password"))
         admin.save()
         return (jsonify({"message":"Registered succesfully"}), 200)
     else:

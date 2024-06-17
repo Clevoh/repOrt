@@ -11,13 +11,14 @@ class Admin(db.Model):
     religion = db.Column(db.String(80), nullable=False)
     address = db.Column(db.String(80), nullable=False)
     bloodgroup = db.Column(db.String(80), nullable=False)
-    hash_password = db.Column(db.String(80), nullable=False)
+    hash_password = db.Column(db.String(240), nullable=False)
 
     def __repr__(self):
-        return f'<Teacher {self.name}>'
+        return f'<Teacher {self.username}>'
 
-    def hash_password(self, password):
+    def hashing_password(self, password):
         self.hash_password = generate_password_hash(password)
+        # return self.hash_password
     
     def check_password(self, password):
         return check_password_hash(self.hash_password, password)
