@@ -106,18 +106,7 @@ function Registration() {
                                                     "username": username,
                                                     "password": password})
         }
-        // Iterating over the entries to log them
-        // for (let [key, value] of formData.entries()) {
-        //     updateInfo[key] = value;
-
-
-        // if (selectted === "student") {
-        //     setStudentValues(updateInfo);
-        // } else if (selectted === "teacher") {
-        //     setTeacherValues(updateInfo);
-        // } else {
-        //     setParentValues(updateInfo);
-        // }
+       
 }
 
 

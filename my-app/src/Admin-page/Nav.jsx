@@ -1,7 +1,8 @@
-import { useState,  } from 'react';
+import { useState,  } from 'react'
+import {Link} from 'react-router-dom'
 import './Nav.css'
-import {faBars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faBars } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 function Nav() {
 
@@ -16,16 +17,16 @@ function Nav() {
     
     return(
         <div className="container-fluid menu-container">
-            <a className="logo" href="#">logo</a>
+            <Link className="logo">logo</Link>
             <button className='btn-menu' onClick={toggleBtn}><FontAwesomeIcon className='menu-btn' icon={faBars} /></button>
             <div style={btnDisplay} className="navlist">
                 <ul className="menu-section">
-                    <li className="nav-item"><a href="#">Dashboard</a></li>
-                    <li className="nav-item"><a href="#">Teachers</a></li>
-                    <li className="nav-item"><a href="#">Student</a></li>
-                    <li className="nav-item"><a href="#">Register Teacher</a></li>
-                    <li className="nav-item"><a href="#">Enroll Student</a></li>
-                    <li className="nav-item"><a href="#">Attendance</a></li>
+                    <li className="nav-item"><Link>Dashboard</Link></li>
+                    <li className="nav-item"><Link to="" >Teachers</Link></li>
+                    <li className="nav-item"><Link to="" >Students</Link></li>
+                    <li className="nav-item"><Link to=""  >Register Teacher</Link></li>
+                    <li className="nav-item"><Link to=""  >Enroll Student</Link></li>
+                    <li className="nav-item"><Link to=""  >Attendance</Link></li>
                 </ul>
                 <ul>
                     <li className="nav-logout"><a className='log-link' href="#">Logout</a></li>

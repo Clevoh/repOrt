@@ -71,18 +71,18 @@ function Login({setIsLogged, setLoginRole}) {
                     <div className="welcome-note">
                         <p>Welcome to repOrt</p>
                     </div>
-                    <div className="form-el">
-                        <form method="post" onSubmit={handleForm} className="form-2-el">
+                    <div className="form-login">
+                        <form method="post" onSubmit={handleForm} className="form-2-login">
                             <div className="form-input" >
-                            <label htmlFor="id">License ID</label>
+                            <label htmlFor="id">License ID:</label> <br />
                             <input type="text" name="id" value={id} onChange={(e) => setId(e.target.value)} /><br />
-                            <label htmlFor="individual"> Choose Category:</label>
+                            <label htmlFor="individual"> Choose Category:</label> <br />
                             <select name="individual" id="individual" onChange={handleRole}  >
                                 {['select', 'admin', 'teacher', 'parent'].map((key, i) => (<option value={i}>{key}</option> ))}
                             </select> <br />
-                            <label htmlFor="username"> Username</label>
+                            <label htmlFor="username"> Username:</label><br />
                             <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}  /><br />
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Password:</label><br />
                             <input type="password" name="password" id="password" value={password}  onChange={(e) => setPassword(e.target.value)}  /><br />
                             </div>
                             <div className="login-block">
@@ -91,7 +91,7 @@ function Login({setIsLogged, setLoginRole}) {
             
                         </form>
                     </div>
-                    <Link to="/admin-signup">Sign up as an Admin</Link>
+                    <Link className="admin-link" to="/admin-signup">Sign up as an Admin</Link>
                 </div>
             </div>
         </div>

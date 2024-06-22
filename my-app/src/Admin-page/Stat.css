@@ -1,5 +1,5 @@
 .stud-block, .teach-block, .parent-block, .earning  {
-    width: 40%;
+    /* width: 40%; */
     display: flex;
     gap: 20px;
     background-color: #ffffff;
@@ -11,9 +11,8 @@
     box-shadow: 1px 1px rgb(20, 20, 20, 0.1);
 
 }
-.stats-block {
+.row {
     background-color: #F5F8DE;
-    display: flex;
     justify-content: center;
 }
 .stat {

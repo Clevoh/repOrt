@@ -2,6 +2,8 @@
    display: flex;
    position: relative;
    margin: 0;
+   padding: .5rem;
+
 }
 .logo {
    font-size: 2rem;
@@ -39,11 +41,12 @@
 .menu-btn {
    color:  #ffffff;
    font-size: 1.5rem;
-   padding: .5rem;
+   padding: .2rem;
 }
 .btn-menu {
    position: absolute;
    right: 50px;
+   top: -1rem;
    border-style: none;
    background-color: hsl(169, 100%, 8%);
    /* z-index: 2; */

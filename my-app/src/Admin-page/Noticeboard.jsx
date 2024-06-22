@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import './Noticeboard.css'
 
-
 //creates a notice and display a created notice
 // input + button
 // we want to input an image, a text, select the date and have an ellipses for delete
@@ -13,7 +12,6 @@ function Noticeboard (props) {
     let monthTitle = ['Jan', 'Feb', 'Mar', 'Apr', 'June',
                             'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
         ]
-
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
@@ -25,14 +23,12 @@ function Noticeboard (props) {
 
     // handles image upload
     const handleImage = (e) => {
-        console.log(e.target.files[0]);
         let reader = new FileReader();
         reader.onload = () => {
-            console.log(reader.result)
             setImage(reader.result);
         }
         if (e.target.files[0]) {
-           reader.readAsDataURL(e.target.files[0]);
+            reader.readAsDataURL(e.target.files[0]);
         }
     }
 
@@ -46,7 +42,7 @@ function Noticeboard (props) {
     }
     // handle submit and also check how to add new post without erasing old post and handle delete also
     const handleSubmit = () => {
-        setSubmitPost("post-active")
+        setSubmitPost("post-active");
     }
     return (
         <div className="container-fluid notice-board">
@@ -64,14 +60,14 @@ function Noticeboard (props) {
                     </div>
                 </div>
                 <div style={props.pdisplay} className="input-notice">
-                    <form className='notice-form' action="" method="post">
+                    <form className='notice-form' onSubmit={handleSubmit}  method="post">
                         <div className="file">
                             <label htmlFor="story-image">Select an image</label>
                             <input type="file" accept='image/*' onChange={handleImage} name="story-image" id="story-image" />
                         </div>
                         <input type="text" name="text" id="text" onChange={handleText} placeholder='write your article' />
                         <input type="date" onChange={handleDateUpload} value={`${currentDate}`} name="date" id="date" />
-                        <input type='button' onClick={handleSubmit} value="Post" />
+                        <button type="submit"></button>
                     </form>
                 </div>
                 

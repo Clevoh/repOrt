@@ -11,7 +11,15 @@
     align-items: center;
     color: #F5F8DE;
     font-weight: 300;
+    position: relative;
+    font-family: "Roboto";
+    font-size: .9rem;
 }
+
+select[id="individual"] {
+    margin-bottom: .5rem;
+}
+
 .login-page {
     display: flex;
     justify-content: center;
@@ -23,11 +31,11 @@
     font-size: 1.6rem;
     font-weight: 500;
 }
-.form-el {
+.form-login {
     background-color: #002A22;
     padding: 6rem 2rem;
 }
-.form-2-el {
+.form-2-login {
     display: flex;
     flex-direction: column; 
 }
@@ -53,4 +61,23 @@
     color: #ffffff;
 }
 
+/* media queries */
+@media (min-width: 991.98px) {
+    .image img {
+        display: block;
+    }
+  }
 
+.login-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-link {
+    text-decoration: none;
+    margin-top: .3rem;
+    font-size: .9rem;
+    color: #002A22;
+    font-weight: 400;
+}
